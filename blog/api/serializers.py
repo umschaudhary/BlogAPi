@@ -9,6 +9,14 @@ class Postserializers(serializers.ModelSerializer):
 
 
 class PostListserializers(serializers.ModelSerializer):
+    url = serializers.HyperlinkedIdentityField(
+        view_name="api:detail",
+    )
+
+    delete_url = serializers.HyperlinkedIdentityField(
+        view_name="api:delete",
+    )
+
     class Meta:
         model = Post
-        fields = ["user", "id", "slug", "title", "body", "created"]
+        fields = ["user", "url", "slug", "title", "body", "created", "delete_url"]
